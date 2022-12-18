@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import states from '../../../../../api/states'
+import states from '../../../../api/states'
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react"
 import {
     FormContainer,
