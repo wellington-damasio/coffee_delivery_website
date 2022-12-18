@@ -1,59 +1,61 @@
-# Todo List
+# Coffee Delivery
 
-![](screenshots/screenshot1.png)      |  ![](screenshots/screenshot2.png)
+![](screenshots/home.png)      |  ![](screenshots/home2.png)
 :-------------------------:|:-------------------------:
+:![](screenshots/checkout.png)      |  ![](screenshots/success.png)
 
 <a href="https://damasio-coffee-delivery.netlify.app">Live Project 👽</a>
         
 ## About the project 💻
-This is a challenge from the first chapter of Rocketseat's Ignite classes.
+This is a challenge from the second chapter of Rocketseat's Ignite classes.
 
 Users should be able to:
-- See their taks, and if they are done or not
-- Add new tasks
-- Delete specific tasks
+- Navigate through the 3 different pages (Home, Checkout, Success)
+- Add new coffee orders to the cart
+- Increment and decrement the quantity of each coffee type limited by the maximum amount of coffee in the inventory through both the Home page and the Checkout page
+- Once typed all necessary information in the Checkout page form and submit the form, see the success page with the message about their order
 
 Tecnologies I'm using:
-- CSS Modules
+- Vite
 - React.js
 - TypeScript
 
 Libraries:
+- styled-components
+- react-router-dom
+- React Hook Form
 - Phosphor Icons
-- date-fns (for better formatting dates)
 
-## Things I want to add to this project 👨‍💻
+## Things I added to this project 👨‍💻
 The best way to learn is to make projects yourself (as I'm doing now 🙃) and to try to add cool features to those projects.
 
-Some features I want to add are:
-- ~~Tasks go to the bottom of the list when completed~~
-- Drag-and-drop functionality
-- Hide tasks that are already done
-- ~~Change favicon and title of the website~~
+Some features I added:
+- When user enters CEP number, form will fill some address fields by itself
+- Geolocalization API to get user location and show it on the header 
+- Responsive design (mobile-first workflow)
 
 ## Difficulties I faced 🤷‍♂️
 ### TypeScript <img align="center" alt="ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg">
-This is my first time using TypeScript by myself
-I faced a lot of difficulties when it comes to types, passing props and specifying their types and etc...
-I would say 35% of the time spent in this project was just for correcting TypeScript errors
+Integrating this projects libraries with TypeScript was a challenging task as this is only my second React app using TypeScript
+For me it's been a difficult problem to deal with, but I'm seeing improvements in the way I use and understand TypeScript
 
-### React Hooks <img alt="react" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg">
-There were some behaviors and 'tricks' about the useState hook that I didn't know before and had to learn as I built this app.
-Things like:
-- React re-rendering components when state changes
-- How to use less useState hooks to build functionalities
+### react-router-dom <img alt="react" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg">
+This is my first project using this library by myself and I found myself very confused and lost in the beginning trying understand concepts like:
+- Router
+- Outlet
+- How to redirect user throughout the website as a side effect of an action
 
-I also learned the useEffect hook while build the app. Didn't have any problems with it
+But, as soon as I slowed down and searched through the documentation I found what I needed better understand the library and build my project
 
 ## Things I could do to build a better project 👨‍🏭
-1. Plan how the functionalities of the app will be built
-2. More patience when it comes to adding extra functionalities. (I saw how an easy-to-read code can become a mess if you just begin to add too much functionalities)
-3. Think about how CSS will play out with the functionalities of app (I had to re-write a lot of CSS after I added functionality to the project)
+1. Better separate the styles of the components in the styled-components files (already done that 🙃)
+2. Thinking about TypeScript's types before writing functions and react components
+3. Thinking about how form validation will work, and how to display error messages before actually writing the form
 
 ## What I learned 👨‍🏫
 - How to better plan the structure (HTML), styles (CSS) and functionalities (JS) of an application by looking at a design/mockup
 - How to think in a 'React way' (passing props, immutability, callback functions and etc)
 - How to use TypeScript with React (still have to work in this tho)
-- How to use the React's useState hook efficiently
-- How to use the useEffect hook to make the application more dynamic
-- How to make a custom checkbox myself
+- How to use React Hook Form to improve form accessibility, form control, validation and submition.
+- How to use styled-components to write clean and dinamic styles in an application
+- How to use react-router-dom to make a multi-page SPA 
