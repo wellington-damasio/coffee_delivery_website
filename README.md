@@ -4,7 +4,7 @@
 :-------------------------:|:-------------------------:
 :![](screenshots/checkout.png)      |  ![](screenshots/success.png)
 
-<a href="https://damasio-coffee-delivery.netlify.app">Live Project 👽</a>
+<a href="https://damasio-coffee-delivery.netlify.app" target="_blank">Live Project 👽</a>
         
 ## About the project 💻
 This is a challenge from the second chapter of Rocketseat's Ignite classes.
