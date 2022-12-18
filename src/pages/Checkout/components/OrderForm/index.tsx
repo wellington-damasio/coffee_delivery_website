@@ -56,7 +56,6 @@ export const OrderForm = (props: PropsTypes) => {
             fetch(cepApiUrl)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     setValue('street', data.logradouro)
                     setValue('neighbourhood', data.bairro)
                     setValue('city', data.localidade)

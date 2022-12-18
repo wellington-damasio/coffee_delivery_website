@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -37,7 +37,7 @@ export const Checkout = () => {
                 watch={watch}
                 setValue={setValue}
             />
-            <SelectedCoffees orders={orders} setOrders={setOrders} />
+            <SelectedCoffees />
         </FormContainer>
     )
 }
