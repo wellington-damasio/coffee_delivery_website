@@ -39,13 +39,19 @@ Some features I added:
 Integrating this projects libraries with TypeScript was a challenging task as this is only my second React app using TypeScript
 For me it's been a difficult problem to deal with, but I'm seeing improvements in the way I use and understand TypeScript
 
-### react-router-dom <img alt="react" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg">
+#### react-router-dom <img alt="react" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg">
 This is my first project using this library by myself and I found myself very confused and lost in the beginning trying understand concepts like:
 - Router
 - Outlet
 - How to redirect user throughout the website as a side effect of an action
 
 But, as soon as I slowed down and searched through the documentation I found what I needed better understand the library and build my project
+
+### Context API <img alt="react" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg">
+Understanding how to work with data across different pages was a interesting challenge
+It helped me learn more about:
+- How to pass states and manipulate them outside of a given file
+- How React Closures work when it comes to useState() (I really lost some time trying to fix these errors 😂)
 
 ## Things I could do to build a better project 👨‍🏭
 1. Better separate the styles of the components in the styled-components files (already done that 🙃)
