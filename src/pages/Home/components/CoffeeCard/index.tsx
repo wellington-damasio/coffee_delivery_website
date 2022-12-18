@@ -1,7 +1,8 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { CardContainer, PriceContainer, QuantityButton, BuyButton } from './styles'
-import coffees from '../../../../../api/coffees'
-import { useState } from 'react'
+import { ShoppingCart } from 'phosphor-react'
+import { CardContainer, PriceContainer, BuyButton } from './styles'
+import { useState, useContext } from 'react'
+import { QuantityButton } from '../../../../components/QuantityButton'
+import { OrdersContext } from '../../../../contexts/OrdersContext'
 
 interface CoffeeCardProps {
     id: string
@@ -15,6 +16,7 @@ interface CoffeeCardProps {
 
 export const CoffeeCard = (props: CoffeeCardProps) => {
     const { id, imgUrl, type, tags, description, price, availableQtd } = props
+    const { setOrders } = useContext(OrdersContext)
 
     const [buyQtd, setBuyQtd] = useState(1)
 
@@ -31,21 +33,35 @@ export const CoffeeCard = (props: CoffeeCardProps) => {
     return (
         <CardContainer>
             <img src={imgUrl} alt="" />
-            <small className="tag">{...tags}</small>
+            <div className="tags">
+                {
+                    tags.map((tag, i) => {
+                        return <small key={i} className="tag">{tag}</small>
+                    })
+                }
+            </div>
             <h3>{type}</h3>
             <p>{description}</p>
             <PriceContainer>
                 <span className="price">{getFormattedPrice(price)}</span>
-                <QuantityButton>
-                    <button onClick={handleDecreaseBuyQtd}>
-                        <Minus weight='bold' />
-                    </button>
-                    {buyQtd}
-                    <button onClick={handleIncreaseBuyQtd}>
-                        <Plus weight='bold' />
-                    </button>
-                </QuantityButton>
-                <BuyButton>
+                <QuantityButton
+                    handleSubtraction={handleDecreaseBuyQtd}
+                    handleAddition={handleIncreaseBuyQtd}
+                    quantity={buyQtd}
+                />
+                <BuyButton
+                    onClick={() => setOrders(state => {
+                        const existingOrder = [...state].find(order => order?.id === id)
+                        if (existingOrder) {
+                            //Remove already existing order and replace with a 
+                            //new one
+                            return [...state].filter(order => order.id !== id)
+                                .concat({ id, buyQtd })
+                        } else {
+                            return [...state, { id, buyQtd }]
+                        }
+                    })}
+                >
                     <ShoppingCart weight='fill' size={20} />
                 </BuyButton>
             </PriceContainer>
