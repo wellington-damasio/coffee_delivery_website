@@ -59,3 +59,5 @@ But, as soon as I slowed down and searched through the documentation I found wha
 - How to use React Hook Form to improve form accessibility, form control, validation and submition.
 - How to use styled-components to write clean and dinamic styles in an application
 - How to use react-router-dom to make a multi-page SPA 
+- How to use the useEffect hook to consume API
+- How get the user location using JavaScript geolocation + BigDatCloud geolocation API
