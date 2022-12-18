@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { CoffeeOrderTypes } from '../../../../contexts/OrdersContext'
+import { useContext, useEffect, useState } from 'react'
+import { CoffeeOrderTypes, OrdersContext } from '../../../../contexts/OrdersContext'
 import coffees from '../../../../api/coffees'
 import { QuantityButton } from '../../../../components/QuantityButton'
 import { Container, FormContainer, CoffeeContainer, PriceContainer } from './styles'
@@ -13,6 +13,8 @@ interface CoffeeProps {
     buyQtd: number
     availableQtd: number
     handleRemoveOrder: any
+    setOrders: any
+    orders: any
 }
 
 const getFormattedPrice = (price: any) => {
@@ -20,15 +22,37 @@ const getFormattedPrice = (price: any) => {
 }
 
 const Coffee = (props: CoffeeProps) => {
-    const { id, imgUrl, type, price, availableQtd, handleRemoveOrder } = props
+    const { id, imgUrl, type, price, availableQtd, handleRemoveOrder, setOrders, } = props
 
     const [buyQtd, setBuyQtd] = useState(props.buyQtd)
 
     const handleDecreaseBuyQtd = () => {
-        if (buyQtd > 1) setBuyQtd((state: number) => state - 1)
+        if (buyQtd > 1) {
+            setBuyQtd((state: number) => state - 1)
+            setOrders((state: CoffeeOrderTypes[]) => {
+                return state.map(order => {
+                    if (order.id === id) {
+                        return { id: order.id, buyQtd: order.buyQtd - 1 }
+                    } else {
+                        return order
+                    }
+                })
+            })
+        }
     }
     const handleIncreaseBuyQtd = () => {
-        if (buyQtd < availableQtd) setBuyQtd((state: number) => state + 1)
+        if (buyQtd < availableQtd) {
+            setBuyQtd((state: number) => state + 1)
+            setOrders((state: CoffeeOrderTypes[]) => {
+                return state.map(order => {
+                    if (order.id === id) {
+                        return { id: order.id, buyQtd: order.buyQtd + 1 }
+                    } else {
+                        return order
+                    }
+                })
+            })
+        }
     }
 
     return (
@@ -59,40 +83,15 @@ const Coffee = (props: CoffeeProps) => {
     )
 }
 
-interface SelectedCoffeesProps {
-    orders: CoffeeOrderTypes[]
-    setOrders: any
-}
-
-export const SelectedCoffees = (props: SelectedCoffeesProps) => {
-    const { orders, setOrders } = props
-
-    const totalPrice = orders.length > 0
-        ? orders
-            .map((order) => {
-                const coffee = coffees.find(coffee => coffee.id === order.id)
-                if (coffee) {
-                    return coffee.price * order.buyQtd
-                } else {
-                    return 0
-                }
-            })
-            .reduce((current, next) => {
-                if (current && next) {
-                    return current + next
-                } else {
-                    return 0
-                }
-            })
-        : 0
-
-    const deliveryTax = orders.length * 3.5
-
-    const removeCoffeeOrder = (id: string) => {
-        setOrders((state: CoffeeOrderTypes[]) => {
-            return [...state].filter(order => order.id !== id)
-        })
-    }
+export const SelectedCoffees = () => {
+    const {
+        orders,
+        setOrders,
+        totalItemsPrice,
+        totalPrice,
+        deliveryTaxPrice,
+        removeCoffeeOrder
+    } = useContext(OrdersContext)
 
     return (
         <Container>
@@ -113,6 +112,8 @@ export const SelectedCoffees = (props: SelectedCoffeesProps) => {
                                     buyQtd={order.buyQtd}
                                     availableQtd={coffee.qtd}
                                     handleRemoveOrder={removeCoffeeOrder}
+                                    orders={orders}
+                                    setOrders={setOrders}
                                 />
                             )
                         }
@@ -121,15 +122,15 @@ export const SelectedCoffees = (props: SelectedCoffeesProps) => {
                 <PriceContainer>
                     <div>
                         <span>Total de itens</span>
-                        <span>{getFormattedPrice(totalPrice)}</span>
+                        <span>{getFormattedPrice(totalItemsPrice)}</span>
                     </div>
                     <div>
                         <span>Entrega</span>
-                        <span>{getFormattedPrice(deliveryTax)}</span>
+                        <span>{getFormattedPrice(deliveryTaxPrice)}</span>
                     </div>
                     <div>
                         <span>Total</span>
-                        <span>{getFormattedPrice(totalPrice + deliveryTax)}</span>
+                        <span>{getFormattedPrice(totalPrice)}</span>
                     </div>
                 </PriceContainer>
                 <button type="submit">Confirmar Pedido</button>
