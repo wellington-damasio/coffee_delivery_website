@@ -15,8 +15,9 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         background-color: ${props => props.theme.background};
-        color: ${props => props.theme['brown-700']};
+        color: ${props => props.theme['brown-300']};
         font-weight: ${props => props.theme['fw-regular']};
+        padding-bottom: 5rem;
     }
 
     body, input, textarea, button {
