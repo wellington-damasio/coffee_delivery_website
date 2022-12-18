@@ -1,7 +1,7 @@
 import { CoffeeCard } from "./components/CoffeeCard"
 import { CoffeeCardsContainer } from "./components/CoffeeCardsContainer"
 import { Hero } from "./components/Hero"
-import coffees from '../../../api/coffees'
+import coffees from '../../api/coffees'
 
 export const Home = () => {
 

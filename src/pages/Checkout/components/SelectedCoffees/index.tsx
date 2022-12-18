@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CoffeeOrderTypes } from '../../../../contexts/OrdersContext'
-import coffees from '../../../../../api/coffees'
+import coffees from '../../../../api/coffees'
 import { QuantityButton } from '../../../../components/QuantityButton'
 import { Container, FormContainer, CoffeeContainer, PriceContainer } from './styles'
 import { Trash } from 'phosphor-react'
